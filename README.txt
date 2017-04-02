@@ -27,3 +27,5 @@ Getting Started
 - Run your project.
 
     env/bin/pserve development.ini
+
+    venv/bin/pip install -e .
