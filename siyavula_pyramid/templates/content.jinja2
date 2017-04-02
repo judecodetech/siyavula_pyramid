@@ -1,0 +1,30 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<div class="content">
+    {% if error_message %}
+        <h1>
+            <span class="smaller">{{ error_message }}</span>
+        </h1>
+    {% else  %}
+        {% for key, value in toc.items() %}
+            <ul>
+              <li>{{ key }}</li>
+                {% for item in value %}
+                <ul>
+                  <li>{{ item }}</li>
+                </ul>
+                {% endfor  %}
+            </ul>
+        {% endfor  %}
+    {% endif  %}
+
+    <br>
+
+    <div>
+        <button type="submit" class="btn btn-default"><a href="/">Reset</a></button>
+    </div>
+
+</div>
+
+{% endblock content %}

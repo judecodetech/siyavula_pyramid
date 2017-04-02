@@ -1,0 +1,3 @@
+[run]
+source = siyavula_pyramid
+omit = siyavula_pyramid/test*
