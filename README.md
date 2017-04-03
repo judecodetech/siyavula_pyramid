@@ -4,7 +4,10 @@
 ## Getting Started
 
 
-- These instructions assume that python3.* is installed.
+- These instructions assume that python3.* and git are installed.
+
+- Clone this project.
+	- git clone https://github.com/judeconnectionz/siyavula_pyramid.git
 
 - Change directory into project.
 
