@@ -1,13 +1,17 @@
+"""
+Views for this project
+"""
+
 from pyramid.view import (
     view_config,
     view_defaults
 )
 
-from .wiki_toc import Wiki
+from .wiki_toc import get_toc
 
 
 @view_defaults(renderer='templates/home.jinja2')
-class WikiViews:
+class WikiViews(object):
 
     def __init__(self, request):
         self.request = request
@@ -31,8 +35,7 @@ class WikiViews:
         an error message.
         """
         wiki_url = self.request.POST.get('wiki_url')
-        wiki = Wiki()
-        links = wiki.get_toc(wiki_url)
+        links = get_toc(wiki_url)
         if 'error' not in links.keys():
             return {'toc': links}
         return {
