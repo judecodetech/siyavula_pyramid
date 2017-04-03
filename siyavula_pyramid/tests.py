@@ -7,6 +7,7 @@ INVALID_URL = 'https://docs.python.org/3/reference/simple_stmts.html'
 
 
 class ViewTests(unittest.TestCase):
+
     def setUp(self):
         self.config = testing.setUp()
 
@@ -23,9 +24,9 @@ class ViewTests(unittest.TestCase):
     def test_content_valid_url(self):
         from .views import WikiViews
         request = testing.DummyRequest()
-        #add wiki url to post request
+        # add wiki url to post request
         request.POST = {'wiki_url': VALID_URL}
-        #instantiate wiki view class
+        # instantiate wiki view class
         wiki_view = WikiViews(request)
         info = wiki_view.content()
         self.assertTrue('toc' in info)
@@ -40,6 +41,7 @@ class ViewTests(unittest.TestCase):
 
 
 class FunctionalTests(unittest.TestCase):
+
     def setUp(self):
         from siyavula_pyramid import main
         app = main({})

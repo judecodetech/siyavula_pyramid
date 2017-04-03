@@ -28,6 +28,7 @@ def isfloat(value):
     except ValueError:
         return False
 
+
 def map_links(links=None):
     """
     This function maps links into a dictionary,
@@ -40,27 +41,50 @@ def map_links(links=None):
         '2 key': [value1]
     }
     """
+
+    # create a default dict instance
     links_dict = defaultdict(set)
     link_no = 0
+    # variable to hold links that are uls
     a_ul = ''
+
+    # traverse all links one at a time
     for link in links:
+        # split the text in the link converting 
+        # them to a list of strings
         split_link = link.text.split()
-        for s in split_link:
-            if s.isdigit():
+        for splitted_link in split_link:
+            # check if the character is a digit 
+            if splitted_link.isdigit():
+                # assume the link as a ul
                 a_ul = link.text
-                link_no = int(s)
+                # convert the found digit from string to integer 
+                link_no = int(splitted_link)
+                # this is valid because it is a defaultdict.
+                # Insserts a key into the dict, even though
+                # it is not present.
                 links_dict[a_ul]
 
+            # find all subdigits of the digit found above
+            # e.g if link text is 1 Methodolgies, find
+            # all other links that starts with 1. and assume
+            # to be li elements under the ul 1 Methodolgies.
+            # 1 Methodolgies
+            #    1.1 Agile
+            #    1.2 Waterfall
             for b in link.text.split():
                 ul_no = '{}.'.format(link_no)
                 if (isfloat(b) and isfloat(b) !=
                         link_no and b.startswith(ul_no)):
                     links_dict[a_ul].add(link.text)
 
+    # sort all link values which converts the set
+    # to a list.                
     for key, value in links_dict.items():
         links_dict[key] = sorted(value)
 
     return SortedDict(links_dict)
+
 
 class Wiki(object):
     """
