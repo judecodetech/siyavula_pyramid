@@ -1,8 +1,8 @@
 # siyavula_pyramid
-# ===============
+
 
 ## Getting Started
-## ---------------------
+
 
 - These instructions assume that python3.* is installed.
 
